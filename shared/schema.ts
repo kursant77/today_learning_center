@@ -65,6 +65,16 @@ export const events = pgTable("events", {
   category: text("category").notNull(),
 });
 
+export type User = {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+};
+
+export type InsertUser = Omit<User, "id" | "createdAt">;
+
 export const insertCourseSchema = createInsertSchema(courses).omit({ id: true });
 export const insertTeacherSchema = createInsertSchema(teachers).omit({ id: true });
 export const insertApplicationSchema = createInsertSchema(applications).omit({ id: true, createdAt: true });
